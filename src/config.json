@@ -1,0 +1,6 @@
+{
+  "tmdb": {
+    "url": "https://api.themoviedb.org/3",
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5ZjE2ZDBiNzMxZTcxZDA0NjljNGVmMjQ1Y2U0YmRiNSIsInN1YiI6IjVlN2Y0NTA4YTQxMGM4MDAxNjUyZTEyZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.s1sQPHXj3HrmWU7NZDNCrelbAnDJEkABjLqNfTcPEb4"
+  }
+}

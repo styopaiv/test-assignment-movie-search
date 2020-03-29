@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
+import { ApiContext } from "./api/useApi";
+import { tmdb as tmdbConfig } from "./config.json";
+import { TmdbApi } from "./api/TmdbApi";
+
+import { Root } from "./components/Root";
+import { BrowserRouter } from "react-router-dom";
+
+const api = new TmdbApi(tmdbConfig);
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApiContext.Provider value={api}>
+      <BrowserRouter>
+        <Root />
+      </BrowserRouter>
+    </ApiContext.Provider>
   );
-}
+};
 
 export default App;
