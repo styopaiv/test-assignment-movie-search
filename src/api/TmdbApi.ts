@@ -14,6 +14,12 @@ import {
 } from "./types/endpoints/searchActors";
 import { GetActorDetailsResponse } from "./types/endpoints/getActorDetails";
 import { GetMovieDetailsResponse } from "./types/endpoints/getMovieDetails";
+import {
+  SearchMoviesRequestRuntype,
+  SearchMoviesResponseRuntype,
+  SearchMoviesRequest,
+  SearchMoviesResponse,
+} from "./types/endpoints/searchMovies";
 
 export class TmdbApi extends ApiClient {
   getUpcomingMovies = this.createRequest<void, GetUpcomingMoviesResponse>(
@@ -26,6 +32,12 @@ export class TmdbApi extends ApiClient {
     { url: "/search/person", method: "get" },
     SearchActorsRequestRuntype,
     SearchActorsResponseRuntype,
+  );
+
+  searchMovies = this.createRequest<SearchMoviesRequest, SearchMoviesResponse>(
+    { url: "/search/movie", method: "get" },
+    SearchMoviesRequestRuntype,
+    SearchMoviesResponseRuntype,
   );
 
   getActorDetails = (personId: string) =>

@@ -1,12 +1,13 @@
 import { useEffect, useState, SyntheticEvent } from "react";
 import debounce from "lodash.debounce";
 
-import { useApi } from "api/useApi";
-import { Actor } from "api/types/Actor";
+import { ListItem } from "types/ListItem";
 
-export const useFetchActors = () => {
-  const api = useApi();
-  const [data, setData] = useState<Actor[]>();
+export const useSearch = <T>(
+  transformData: (data: T) => ListItem[],
+  request?: (requestData: { query: string }) => Promise<{ results?: T }>,
+) => {
+  const [searchData, setData] = useState<ListItem[]>([]);
   const [searchText, setSearchText] = useState("");
 
   const onSearch = (event: SyntheticEvent) => {
@@ -22,9 +23,9 @@ export const useFetchActors = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const response = await api?.searchActors({ query: searchText });
+        const response = await request?.({ query: searchText });
 
-        const result = response?.results?.filter((elem) => !!elem.profilePath);
+        const result = response?.results ? transformData(response.results) : [];
 
         setData(result);
       } catch (error) {
@@ -37,7 +38,7 @@ export const useFetchActors = () => {
     } else {
       setData([]);
     }
-  }, [api, searchText]);
+  }, [request, searchText, transformData]);
 
-  return { actors: data, onSearch };
+  return { searchData, onSearch, searchText };
 };

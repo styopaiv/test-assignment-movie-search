@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 
 import { useFetchActor } from "./hooks";
 
-import { Navigation } from "components/Navigation";
 import { useStyles } from "./styles";
 
 export const Actor: React.FC = () => {
@@ -14,7 +13,6 @@ export const Actor: React.FC = () => {
 
   return (
     <>
-      <Navigation />
       {actor ? (
         <Card className={styles.cardContent}>
           <div className={styles.media}>
