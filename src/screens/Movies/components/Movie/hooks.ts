@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
 import { useApi } from "api/useApi";
-import { GetMovieDetailsResponse } from "api/types/endpoints/getMovieDetails";
+import { MovieDetails } from "api/types/MovieDetails";
 
 export const useFetchMovie = (movieId: string) => {
-  const [actor, saveMovie] = useState<GetMovieDetailsResponse | undefined>();
+  const [movie, saveMovie] = useState<MovieDetails | undefined>();
   const api = useApi();
 
   useEffect(() => {
@@ -21,5 +21,5 @@ export const useFetchMovie = (movieId: string) => {
     fetch();
   }, [api, movieId]);
 
-  return actor;
+  return movie;
 };

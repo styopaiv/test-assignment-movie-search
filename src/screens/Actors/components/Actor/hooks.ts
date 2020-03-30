@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+
 import { useApi } from "api/useApi";
-import { GetActorDetailsResponse } from "api/types/endpoints/getActorDetails";
+import { ActorDetails } from "api/types/ActorDetails";
 
 export const useFetchActor = (actorId: string) => {
-  const [actor, saveActor] = useState<GetActorDetailsResponse | undefined>();
+  const [actor, saveActor] = useState<ActorDetails | undefined>();
   const api = useApi();
 
   useEffect(() => {
